@@ -7,40 +7,42 @@ navLinks?.querySelectorAll("a").forEach((a) =>
   a.addEventListener("click", () => navLinks.classList.remove("open"))
 );
 
-const lb = document.getElementById("lightbox");
-const lbImg = document.getElementById("lbImg");
-const lbTitle = document.getElementById("lbTitle");
-const lbDesc = document.getElementById("lbDesc");
-const lbClose = document.getElementById("lbClose");
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightboxImg");
+const lightboxTitle = document.getElementById("lightboxTitle");
+const lightboxDesc = document.getElementById("lightboxDesc");
+const lightboxClose = document.getElementById("lightboxClose");
 
-function openLb(card) {
-  lbImg.src = card.dataset.full;
-  lbImg.alt = card.dataset.title || "";
-  lbTitle.textContent = card.dataset.title || "";
-  lbDesc.textContent = card.dataset.desc || "";
-  lb.classList.add("open");
-  lb.setAttribute("aria-hidden", "false");
+function openLightbox(card) {
+  lightboxImg.src = card.dataset.full;
+  lightboxImg.alt = card.dataset.title || "";
+  lightboxTitle.textContent = card.dataset.title || "";
+  lightboxDesc.textContent = card.dataset.desc || "";
+  lightbox.hidden = false;
+  lightbox.classList.add("open");
+  lightbox.setAttribute("aria-hidden", "false");
 }
-function closeLb() {
-  lb.classList.remove("open");
-  lb.setAttribute("aria-hidden", "true");
-  lbImg.src = "";
+function closeLightbox() {
+  lightbox.classList.remove("open");
+  lightbox.hidden = true;
+  lightbox.setAttribute("aria-hidden", "true");
+  lightboxImg.removeAttribute("src");
 }
 
 document.querySelectorAll(".card").forEach((card) => {
-  card.addEventListener("click", () => openLb(card));
+  card.tabIndex = 0;
+  card.addEventListener("click", () => openLightbox(card));
   card.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      openLb(card);
+      openLightbox(card);
     }
   });
-  card.tabIndex = 0;
 });
-lbClose.addEventListener("click", closeLb);
-lb.addEventListener("click", (e) => {
-  if (e.target === lb) closeLb();
+lightboxClose.addEventListener("click", closeLightbox);
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox) closeLightbox();
 });
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") closeLb();
+  if (e.key === "Escape") closeLightbox();
 });

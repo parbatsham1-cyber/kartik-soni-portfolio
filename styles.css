@@ -165,9 +165,7 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .card:nth-child(2) { grid-column: span 5; }
 .card:nth-child(3),
 .card:nth-child(4) { grid-column: span 6; }
-.card:nth-child(5),
-.card:nth-child(6),
-.card:nth-child(7) { grid-column: span 4; }
+.card:nth-child(n+5) { grid-column: span 4; }
 
 .card:hover { transform: translateY(-3px); border-color: rgba(232,196,106,.28); }
 .card-media {
@@ -313,13 +311,7 @@ footer {
   .hero-grid, .about-grid { grid-template-columns: 1fr; }
   .hero-visual { max-width: 420px; }
   .card,
-  .card:nth-child(1),
-  .card:nth-child(2),
-  .card:nth-child(3),
-  .card:nth-child(4),
-  .card:nth-child(5),
-  .card:nth-child(6),
-  .card:nth-child(7) { grid-column: span 6; }
+  .card:nth-child(n) { grid-column: span 6; }
   .contact-links { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
