@@ -1,3 +1,3 @@
 # Kartik Soni Portfolio
 
-Static portfolio site for GitHub Pages.
+Static portfolio site for Kartik Soni.
